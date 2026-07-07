@@ -1,0 +1,21 @@
+job_name: log-report
+agents:
+  - name: oracle
+    model: gpt-4.1-mini
+    kwargs: {}
+
+tasks:
+  - path: .
+
+environment:
+  type: docker
+  build_timeout_sec: 600
+  cpus: 1
+  memory_mb: 2048
+  storage_mb: 10240
+  gpus: 0
+  allow_internet: true
+
+verifier:
+  type: docker
+  timeout_sec: 120

@@ -1,20 +1,20 @@
-artifacts = "/app/out.json"
+artifacts = ["/app/report.json"]
 
 [task]
 name = "dynamo/log-report"
-description = "Parse an Apache-style access log into a small JSON summary report."
+description = "Parse an Apache-style access log and write a JSON summary report."
 
 [metadata]
-category = "data_processing_and_etl"
-subcategory = "text_processing"
-task_objective = ["transform", "generate"]
-artifact_type = ["text_or_log_file", "generated_output_artifact"]
+category = "data_processing"
+subcategory = "log_analysis"
+task_objective = ["summarize", "transform"]
+artifact_type = ["log_file", "json_report"]
 expert_time_estimate_hours = 0.3
 model_tested = "GPT-5.4"
 agent_tested = "Terminus-2"
-difficulty_explanation = "Parse a small access log and emit summary stats."
-solution_explanation = "Read the log, count requests/unique IPs, find the top path."
-verification_explanation = "Check the report file."
+difficulty_explanation = "Read a small access log and compute a compact JSON summary of request counts, unique clients, and the most common path."
+solution_explanation = "Parse the input log, count valid request lines, collect unique IPs, count the requested paths, and write the summary JSON to /app/report.json."
+verification_explanation = "Verify that the report file exists and contains the expected values for total requests, unique IPs, and the most common path."
 
 [verifier]
 timeout_sec = 120.0
